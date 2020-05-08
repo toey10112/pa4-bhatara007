@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    @Override
+    @Overridegit
     /**
      * Method for initialize screen.
      */

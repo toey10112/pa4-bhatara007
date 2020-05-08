@@ -17,7 +17,7 @@
          <children>
             <Text stroke="BLACK" strokeMiterLimit="0.0" text="Covid Tracker World Summary" wrappingWidth="470.4690704345703" StackPane.alignment="CENTER_RIGHT">
                <font>
-                  <Font name="2548_D4" size="48.0" />
+                  <Font size="32.0" />
                </font>
             </Text>
          </children>
@@ -37,7 +37,7 @@
             <Font name="Arial" size="26.0" />
          </font>
       </Text>
-      <Text layoutX="194.0" layoutY="274.0" opacity="0.8" stroke="#f0eeee" strokeWidth="0.0" text="Total Confirm Cases" wrappingWidth="241.14404296875">
+      <Text layoutX="194.0" layoutY="267.0" opacity="0.8" stroke="#f0eeee" strokeWidth="0.0" text="Total Confirm Cases" wrappingWidth="241.14404296875">
          <font>
             <Font name="Arial" size="26.0" />
          </font>
@@ -118,7 +118,7 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Text>
-      <Text fx:id="t4" fill="FORESTGREEN" layoutX="248.0" layoutY="626.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="130.0">
+      <Text fx:id="t4" fill="FORESTGREEN" layoutX="239.0" layoutY="622.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="130.0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
