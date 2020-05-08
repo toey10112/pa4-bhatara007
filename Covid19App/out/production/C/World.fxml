@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="550.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="WorldController">
+   <children>
+      <StackPane prefHeight="70.0" prefWidth="550.0" style="-fx-background-color: #FFC107;">
+         <children>
+            <Text stroke="BLACK" strokeMiterLimit="0.0" text="Covid Tracker World Summary" wrappingWidth="470.4690704345703" StackPane.alignment="CENTER_RIGHT">
+               <font>
+                  <Font name="2548_D4" size="48.0" />
+               </font>
+            </Text>
+         </children>
+      </StackPane>
+      <Text layoutX="240.0" layoutY="416.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="New Deaths">
+         <font>
+            <Font name="2548_D4" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="185.0" layoutY="322.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="New Confrim Cases">
+         <font>
+            <Font name="2548_D4" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="239.0" layoutY="504.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Deaths">
+         <font>
+            <Font name="2548_D4" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="186.0" layoutY="227.0" opacity="0.8" stroke="#f0eeee" strokeWidth="0.0" text="Total Confrim Cases" wrappingWidth="241.14404296875">
+         <font>
+            <Font name="2548_D4" size="36.0" />
+         </font>
+      </Text>
+      <Label fx:id="lb1" alignment="CENTER" layoutX="161.0" layoutY="231.0" prefHeight="62.0" prefWidth="291.0" text="Label" textFill="#111111">
+         <font>
+            <Font name="2548_D4" size="52.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="lb4" alignment="CENTER" layoutX="161.0" layoutY="417.0" prefHeight="62.0" prefWidth="291.0" text="Label" textFill="#010101">
+         <font>
+            <Font name="2548_D4" size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb2" alignment="CENTER" layoutX="161.0" layoutY="321.0" prefHeight="62.0" prefWidth="291.0" text="Label" textFill="#060606">
+         <font>
+            <Font name="2548_D4" size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="lb3" alignment="CENTER" layoutX="161.0" layoutY="504.0" prefHeight="62.0" prefWidth="291.0" text="Label">
+         <font>
+            <Font name="2548_D4" size="50.0" />
+         </font>
+      </Label>
+      <ToggleButton layoutX="106.0" layoutY="110.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="133.0" text="World">
+         <font>
+            <Font name="2548_D4" size="20.0" />
+         </font>
+      </ToggleButton>
+      <ComboBox layoutX="294.0" layoutY="110.0" prefHeight="42.0" prefWidth="185.0" promptText="Country" />
+      <ImageView fitHeight="65.0" fitWidth="58.0" layoutX="144.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@infection-1546810-1311419.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="58.0" layoutX="144.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@infection-2050418-1737359.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="76.0" layoutX="137.0" layoutY="396.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@v25-512.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="67.0" layoutX="140.0" layoutY="496.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@cc9aa77473c321490a1e0de42ea80099_rip-ribbon-png-picture-820736-rip-ribbon-png_1200-1200.png" />
+         </image>
+      </ImageView>
+      <StackPane layoutX="-3.0" layoutY="-5.0" prefHeight="711.0" prefWidth="34.0" style="-fx-background-color: #2e354f;" />
+   </children>
+</Pane>
