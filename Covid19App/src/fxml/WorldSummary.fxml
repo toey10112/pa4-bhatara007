@@ -24,27 +24,27 @@
       </StackPane>
       <Text layoutX="248.0" layoutY="463.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="New Deaths">
          <font>
-            <Font name="2548_D4" size="36.0" />
+            <Font size="26.0" />
          </font>
       </Text>
       <Text layoutX="193.0" layoutY="369.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="New Confirm Cases">
          <font>
-            <Font name="2548_D4" size="36.0" />
+            <Font size="26.0" />
          </font>
       </Text>
       <Text layoutX="247.0" layoutY="558.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Deaths">
          <font>
-            <Font name="2548_D4" size="36.0" />
+            <Font size="26.0" />
          </font>
       </Text>
       <Text layoutX="194.0" layoutY="274.0" opacity="0.8" stroke="#f0eeee" strokeWidth="0.0" text="Total Confirm Cases" wrappingWidth="241.14404296875">
          <font>
-            <Font name="2548_D4" size="36.0" />
+            <Font size="26.0" />
          </font>
       </Text>
       <Label fx:id="lb1" alignment="CENTER" layoutX="168.0" layoutY="273.0" prefHeight="62.0" prefWidth="291.0" text="Label" textFill="#111111">
          <font>
-            <Font name="2548_D4" size="52.0" />
+            <Font size="30.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -52,17 +52,17 @@
       </Label>
       <Label fx:id="lb4" alignment="CENTER" layoutX="166.0" layoutY="458.0" prefHeight="62.0" prefWidth="291.0" text="Label" textFill="#010101">
          <font>
-            <Font name="2548_D4" size="50.0" />
+            <Font size="30.0" />
          </font>
       </Label>
       <Label fx:id="lb2" alignment="CENTER" layoutX="167.0" layoutY="369.0" prefHeight="62.0" prefWidth="291.0" text="Label" textFill="#060606">
          <font>
-            <Font name="2548_D4" size="50.0" />
+            <Font size="30.0" />
          </font>
       </Label>
       <Label fx:id="lb3" alignment="CENTER" layoutX="168.0" layoutY="555.0" prefHeight="62.0" prefWidth="291.0" text="Label">
          <font>
-            <Font name="2548_D4" size="50.0" />
+            <Font size="30.0" />
          </font>
       </Label>
       <ImageView fitHeight="65.0" fitWidth="58.0" layoutX="152.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
@@ -88,7 +88,7 @@
       <StackPane layoutX="-3.0" layoutY="-5.0" prefHeight="711.0" prefWidth="34.0" style="-fx-background-color: #2e354f;" />
       <Text fx:id="text" layoutX="23.0" layoutY="177.0" opacity="0.8" stroke="#111111" strokeWidth="2.0" text="Text" textAlignment="CENTER" wrappingWidth="556.0">
          <font>
-            <Font name="2548_D4" size="64.0" />
+            <Font size="41.0" />
          </font>
       </Text>
       <StackPane layoutX="31.0" layoutY="54.0" prefHeight="49.0" prefWidth="539.0" style="-fx-background-color: #FFC107;">
@@ -102,12 +102,12 @@
       </StackPane>
       <Text fx:id="date" layoutX="131.0" layoutY="222.0" opacity="0.8" stroke="#111111" text="Text" textAlignment="CENTER" wrappingWidth="345.9439392089844">
          <font>
-            <Font name="2548_D4" size="42.0" />
+            <Font size="30.0" />
          </font>
       </Text>
       <Button fx:id="mainMenu" alignment="BASELINE_LEFT" layoutX="31.0" layoutY="652.0" mnemonicParsing="false" onAction="#mainMenuHandler" prefHeight="48.0" prefWidth="176.0" style="-fx-background-color: White;" text="&lt;&lt; Main Menu" textOverrun="CENTER_ELLIPSIS">
          <font>
-            <Font name="2548_D4" size="23.0" />
+            <Font size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -115,22 +115,22 @@
       </Button>
       <Text fx:id="t1" fill="FORESTGREEN" layoutX="261.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="93.40801239013672">
          <font>
-            <Font name="2548_D4" size="24.0" />
+            <Font size="14.0" />
          </font>
       </Text>
       <Text fx:id="t4" fill="FORESTGREEN" layoutX="248.0" layoutY="626.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="130.0">
          <font>
-            <Font name="2548_D4" size="24.0" />
+            <Font size="14.0" />
          </font>
       </Text>
-      <Text fx:id="t3" fill="FORESTGREEN" layoutX="264.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="100.7999877929687">
+      <Text fx:id="t3" fill="FORESTGREEN" layoutX="257.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="100.7999877929687">
          <font>
-            <Font name="2548_D4" size="24.0" />
+            <Font name="2548_D4" size="14.0" />
          </font>
       </Text>
       <Text fx:id="t2" fill="FORESTGREEN" layoutX="261.0" layoutY="437.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="98.7999877929687">
          <font>
-            <Font name="2548_D4" size="24.0" />
+            <Font size="14.0" />
          </font>
       </Text>
    </children>

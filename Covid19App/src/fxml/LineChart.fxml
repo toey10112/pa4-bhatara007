@@ -22,7 +22,7 @@
             <ComboBox fx:id="cb2" layoutX="69.0" layoutY="523.0" prefHeight="31.0" prefWidth="160.0" promptText="Year-Month-Date" />
             <Label fx:id="lb1" layoutX="69.0" layoutY="577.0" prefHeight="26.0" prefWidth="491.0" text="Label1">
                <font>
-                  <Font name="2548_D4" size="33.0" />
+                  <Font size="22.0" />
                </font>
             </Label>
             <Label fx:id="lb2" layoutX="999.0" layoutY="631.0" prefHeight="18.0" prefWidth="171.0" text="Label" textFill="#00000092" />
@@ -36,7 +36,7 @@
             </LineChart>
             <Label fx:id="alert" layoutX="679.0" layoutY="539.0" prefHeight="47.0" prefWidth="405.0" text="Alert" textFill="#ff0000">
                <font>
-                  <Font name="2548_D4" size="34.0" />
+                  <Font name="System Bold Italic" size="22.0" />
                </font>
             </Label>
          </children>
@@ -86,9 +86,9 @@
             <Cursor fx:constant="W_RESIZE" />
          </cursor>
       </ComboBox>
-      <Button fx:id="mainMenu" layoutX="1103.0" mnemonicParsing="false" onAction="#mainMenuHandler" style="-fx-background-color: #FFC107;" text="Main Menu">
+      <Button fx:id="mainMenu" layoutX="1104.0" layoutY="6.0" mnemonicParsing="false" onAction="#mainMenuHandler" style="-fx-background-color: #FFC107;" text="Main Menu">
          <font>
-            <Font name="2548_D4" size="20.0" />
+            <Font size="15.0" />
          </font>
       </Button>
    </children>
