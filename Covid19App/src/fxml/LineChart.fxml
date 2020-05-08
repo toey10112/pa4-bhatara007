@@ -85,9 +85,6 @@
          <font>
             <Font name="2548_D4" size="20.0" />
          </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
       </Button>
    </children>
 </AnchorPane>

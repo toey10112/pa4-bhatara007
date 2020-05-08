@@ -26,7 +26,7 @@ public class GraphData {
         return date;
     }
 
-    public String[] getWorldData() throws Exception {
+    public String[] getWorldData(String where,String date) throws Exception {
         ArrayList<String> allData = new ArrayList<>();
 
         URL oracle = new URL("https://covid.ourworldindata.org/data/ecdc/full_data.csv");
@@ -36,7 +36,7 @@ public class GraphData {
         String inputLine;
         int i = 0;
         while ((inputLine = in.readLine()) != null){
-            if (inputLine.split(",")[1].equalsIgnoreCase("World")) {
+            if (inputLine.split(",")[0].equalsIgnoreCase(date) && inputLine.split(",")[1].equalsIgnoreCase(where)) {
                 allData.add(inputLine);
             }
         }
@@ -46,15 +46,13 @@ public class GraphData {
     }
 
 
-    public ArrayList<String> getContryConfirmCase(String type,String country) throws Exception{
+    public ArrayList<String> getCountryConfirmCase(String type,String country) throws Exception{
 
         String url = "https://covid.ourworldindata.org/data/ecdc/new_deaths.csv";
 
         if(type.equals("Total confirmed cases")) url = "https://covid.ourworldindata.org/data/ecdc/total_cases.csv";
         else if(type.equals("Total deaths")) url = "https://covid.ourworldindata.org/data/ecdc/total_deaths.csv";
         else if(type.equals( "New confirmed cases"))url = "https://covid.ourworldindata.org/data/ecdc/new_cases.csv";
-
-        System.out.println(url);
 
         String[] c = new String[0];
         ArrayList<String> cc= new ArrayList<>();
@@ -107,17 +105,13 @@ public class GraphData {
         String inputLine;
 
         if ((inputLine = in.readLine()) != null) {
-            String ss = inputLine.substring(11,inputLine.length());
+            String ss = inputLine.substring(5,inputLine.length());
             s = ss.split(",");
         }
         return s;
     }
 
     public static void main(String[] args) throws Exception {
-        GraphData gd = new GraphData();
-        for(String s: gd.getWorldData()){
-            System.out.println(s);
-        };
 
     }
 

@@ -12,6 +12,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -23,6 +24,9 @@ import java.util.ResourceBundle;
 
 public class LineChartController implements Initializable {
     GraphData gd = new GraphData();
+
+    @FXML
+    private Button mainMenu;
 
     @FXML
     private ComboBox<String> cb1;
@@ -59,7 +63,7 @@ public class LineChartController implements Initializable {
     ArrayList<String> datee = new ArrayList<>();
     ArrayList<String> confirmCase = new ArrayList<>();
 
-    String countryName = "Country";
+    String countryName = "World";
     String graphType = "Total confirmed cases";
     String casee ;
 
@@ -68,7 +72,7 @@ public class LineChartController implements Initializable {
         try {
             countryy = gd.getCountry();
             datee = gd.getDate();
-            confirmCase = gd.getContryConfirmCase(graphType,countryName);
+            confirmCase = gd.getCountryConfirmCase(graphType,countryName);
         } catch (Exception e) {
             System.out.println("URL Error.");
         }
@@ -93,7 +97,7 @@ public class LineChartController implements Initializable {
 
         series.setName("Covid19 confirm cases");
 
-        lb1.setText(String.format("%s : %s cases", graphType, " ") );
+        lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)) );
         cb2.setValue(datee.get(datee.size()-1));
 
         xAxis.setLabel("Year-Month-Date");
@@ -103,6 +107,13 @@ public class LineChartController implements Initializable {
         lineChart.getData().add(series);
         lineChart.setAnimated(false);
         lineChart.setCreateSymbols(false);
+
+        view.setValue("LineChart");
+
+        for(int i = 1; i < datee.size(); i++) {
+            XYChart.Data<String, Number> data = new XYChart.Data<String,Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
+            series.getData().add(data);
+        }
 
         showType.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -114,10 +125,10 @@ public class LineChartController implements Initializable {
                     series.getData().clear();
                     lineChart.setTitle(countryName);
                     lineChart.setStyle("-fx-font-style: italic");
-                    confirmCase = gd.getContryConfirmCase(graphType,countryName);
+                    confirmCase = gd.getCountryConfirmCase(graphType,countryName);
                     cb2.setValue(datee.get(datee.size()-1));
                     casee = confirmCase.get(confirmCase.size()-1);
-                    lb1.setText(String.format("%s : %s cases", graphType, casee) );
+                    lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)) );
 
                     for(int i = 1; i < datee.size(); i++) {
                         XYChart.Data<String, Number> data = new XYChart.Data<String,Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
@@ -137,7 +148,7 @@ public class LineChartController implements Initializable {
                     countryName = cb1.getValue();
                     lineChart.setTitle(countryName);
                     lineChart.setStyle("-fx-font-style: italic");
-                    confirmCase = gd.getContryConfirmCase(graphType,countryName);
+                    confirmCase = gd.getCountryConfirmCase(graphType,countryName);
                     showType.setValue(graphType);
                     cb2.setValue(datee.get(datee.size()-1));
                     casee = confirmCase.get(confirmCase.size()-1);
@@ -153,7 +164,7 @@ public class LineChartController implements Initializable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                lb1.setText(String.format("%s : %s cases", graphType, casee) );
+                lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)) );
             }
         });
 
@@ -165,7 +176,7 @@ public class LineChartController implements Initializable {
                         casee = confirmCase.get(i);
                     }
                     if((cb1.getValue() != null)) {
-                        lb1.setText(String.format("%s : %s cases", graphType, casee));
+                        lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
                     }
                 }
             }
@@ -176,7 +187,15 @@ public class LineChartController implements Initializable {
         String fxml;
         fxml = view.getValue() + ".fxml";
         view.setValue(view.getValue());
-        Parent chart = FXMLLoader.load(getClass().getResource(fxml));
+        Parent chart = FXMLLoader.load(getClass().getResource("fxml/" + fxml));
+        Scene charScene = new Scene(chart);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(charScene);
+        window.show();
+    }
+
+    public void mainMenuHandler(ActionEvent event) throws IOException {
+        Parent chart = FXMLLoader.load(getClass().getResource("fxml/Menu.fxml"));
         Scene charScene = new Scene(chart);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(charScene);
