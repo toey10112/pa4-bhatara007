@@ -15,7 +15,7 @@
          <children>
             <Text stroke="#060606" text="Menu">
                <font>
-                  <Font name="2548_D4" size="39.0" />
+                  <Font name="Arial" size="31.0" />
                </font>
             </Text>
          </children>
@@ -29,7 +29,7 @@
       <Text layoutX="238.0" layoutY="454.0" opacity="0.36" strokeType="OUTSIDE" strokeWidth="0.0" text="version: 1.0 by Bhatara Chaemchan SKE17" />
       <Text layoutX="129.0" layoutY="431.0" stroke="#060606" text="Welcome to Covid-Tracker!!">
          <font>
-            <Font name="2548_D4" size="39.0" />
+            <Font name="Arial" size="27.0" />
          </font>
       </Text>
       <ImageView fitHeight="136.0" fitWidth="118.0" layoutX="341.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
@@ -42,14 +42,14 @@
             <Image url="@image/Healthcare-Virus-icon.png" />
          </image>
       </ImageView>
-      <Text fill="#0598ff" layoutX="68.0" layoutY="230.0" stroke="#4cd99f" strokeType="OUTSIDE" strokeWidth="5.0" text="Covid19">
+      <Text fill="#0598ff" layoutX="49.0" layoutY="229.0" stroke="#4cd99f" strokeType="OUTSIDE" strokeWidth="5.0" text="Covid19" wrappingWidth="428.606201171875">
          <font>
-            <Font name="dY-Jidrid" size="96.0" />
+            <Font name="Arial Black" size="66.0" />
          </font>
       </Text>
       <Button fx:id="button1" layoutX="129.0" layoutY="473.0" mnemonicParsing="false" onAction="#button1Handler" prefHeight="47.0" prefWidth="311.0" style="-fx-background-color: #ffd24d;" text="World Summary" textAlignment="CENTER">
          <font>
-            <Font name="2548_D4" size="33.0" />
+            <Font name="Arial" size="24.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -57,7 +57,7 @@
       </Button>
       <Button fx:id="button2" layoutX="129.0" layoutY="563.0" mnemonicParsing="false" onAction="#button2Handler" prefHeight="47.0" prefWidth="311.0" style="-fx-background-color: #ffd24d;" text="Charts" textAlignment="CENTER">
          <font>
-            <Font name="2548_D4" size="33.0" />
+            <Font name="Arial" size="28.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -65,7 +65,7 @@
       </Button>
       <Text fill="#0598ff" layoutX="230.0" layoutY="289.0" stroke="#4cd99f" strokeType="OUTSIDE" strokeWidth="4.0" text="Tracker">
          <font>
-            <Font name="dY-Jidrid" size="71.0" />
+            <Font name="Arial" size="55.0" />
          </font>
       </Text>
    </children>
