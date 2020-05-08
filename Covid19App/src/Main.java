@@ -4,17 +4,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * initialize class for rum the application.
+ *
+ * @author Bhatara Chaemchan
+ */
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    /**
+     * Method for initialize screen.
+     */
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/Menu.fxml"));
         primaryStage.setTitle("Covid19 Tracker");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
-
+    /**
+     * Mathod for run Application.
+     * @param args not used.
+     */
     public static void main(String[] args) {
         launch(args);
     }

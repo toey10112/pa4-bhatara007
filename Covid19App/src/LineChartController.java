@@ -16,16 +16,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * The Controller class for LineChart.fxml.
+ *
+ * @author Bhatara Chaemchan SKE17
+ */
 public class LineChartController implements Initializable {
-    GraphData gd = new GraphData();
 
+    //initialize FXML attributes.
     @FXML
     private Button mainMenu;
 
@@ -33,7 +37,7 @@ public class LineChartController implements Initializable {
     private ComboBox<String> cb1;
 
     @FXML
-    private LineChart<String,Number> lineChart;
+    private LineChart<String, Number> lineChart;
 
     @FXML
     private CategoryAxis xAxis;
@@ -59,39 +63,43 @@ public class LineChartController implements Initializable {
     @FXML
     public Label alert;
 
-
-    String[] countryy ;
-    String[] showTypee = new String[]{"Total confirmed cases", "Total deaths", "New confirmed cases", "New deaths"};
-    String[] vieww = new String[]{"BarChart","LineChart"};
+    //initialize class attributes.
+    String[] nameOfCountry;
+    String[] typesOfView = new String[]{"Total confirmed cases", "Total deaths", "New confirmed cases", "New deaths"};
+    String[] typesOfChart = new String[]{"BarChart", "LineChart"};
 
     ArrayList<String> datee = new ArrayList<>();
     ArrayList<String> confirmCase = new ArrayList<>();
 
     String countryName = "World";
     String graphType = "Total confirmed cases";
-    String casee ;
+    String casee;
 
+    /**
+     * Method for display a LineChart from FXML files.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        GraphData gd = new GraphData();
         alert.setText("");
         try {
-            countryy = gd.getCountry();
+            nameOfCountry = gd.getCountry();
             datee = gd.getDate();
-            confirmCase = gd.getCountryConfirmCase(graphType,countryName);
+            confirmCase = gd.getCountryConfirmCase(graphType, countryName);
         } catch (Exception e) {
             alert.setText("Please select the area.");
         }
 
-        lb2.setText("last update: " + datee.get(datee.size()-1));
+        lb2.setText("last update: " + datee.get(datee.size() - 1));
 
-        casee = confirmCase.get(confirmCase.size()-1);
+        casee = confirmCase.get(confirmCase.size() - 1);
 
         XYChart.Series series = new XYChart.Series();
 
-        ObservableList<String> ob1 = FXCollections.observableArrayList(countryy);
+        ObservableList<String> ob1 = FXCollections.observableArrayList(nameOfCountry);
         ObservableList<String> ob2 = FXCollections.observableArrayList(datee);
-        ObservableList<String> ob3 = FXCollections.observableArrayList(showTypee);
-        ObservableList<String> ob4 = FXCollections.observableArrayList(vieww);
+        ObservableList<String> ob3 = FXCollections.observableArrayList(typesOfView);
+        ObservableList<String> ob4 = FXCollections.observableArrayList(typesOfChart);
 
         cb1.getItems().addAll(ob1);
         cb2.getItems().addAll(ob2);
@@ -102,8 +110,8 @@ public class LineChartController implements Initializable {
 
         series.setName("Covid19 confirm cases");
 
-        lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)) );
-        cb2.setValue(datee.get(datee.size()-1));
+        lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
+        cb2.setValue(datee.get(datee.size() - 1));
 
         xAxis.setLabel("Year-Month-Date");
         yAxis.setLabel("Total confirmed cases");
@@ -115,12 +123,17 @@ public class LineChartController implements Initializable {
 
         view.setValue("LineChart");
 
-        for(int i = 1; i < datee.size(); i++) {
-            XYChart.Data<String, Number> data = new XYChart.Data<String,Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
+        for (int i = 1; i < datee.size(); i++) {
+            XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
             series.getData().add(data);
         }
 
         showType.setOnAction(new EventHandler<ActionEvent>() {
+            /**
+             * The anonymous class for set any component on window
+             * and the data of chart.
+             * @param actionEvent action of showType ComboBox.
+             */
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
@@ -130,13 +143,13 @@ public class LineChartController implements Initializable {
                     series.getData().clear();
                     lineChart.setTitle(countryName);
                     lineChart.setStyle("-fx-font-style: italic");
-                    confirmCase = gd.getCountryConfirmCase(graphType,countryName);
-                    cb2.setValue(datee.get(datee.size()-1));
-                    casee = confirmCase.get(confirmCase.size()-1);
-                    lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)) );
+                    confirmCase = gd.getCountryConfirmCase(graphType, countryName);
+                    cb2.setValue(datee.get(datee.size() - 1));
+                    casee = confirmCase.get(confirmCase.size() - 1);
+                    lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
 
-                    for(int i = 1; i < datee.size(); i++) {
-                        XYChart.Data<String, Number> data = new XYChart.Data<String,Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
+                    for (int i = 1; i < datee.size(); i++) {
+                        XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
                         series.getData().add(data);
                     }
                 } catch (Exception e) {
@@ -146,6 +159,11 @@ public class LineChartController implements Initializable {
         });
 
         cb1.setOnAction(new EventHandler<ActionEvent>() {
+            /**
+             * The anonymous class for set any component on window
+             * and the data of chart.
+             * @param actionEvent action of cb1 ComboBox.
+             */
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
@@ -154,30 +172,34 @@ public class LineChartController implements Initializable {
                     countryName = cb1.getValue();
                     lineChart.setTitle(countryName);
                     lineChart.setStyle("-fx-font-style: italic");
-                    confirmCase = gd.getCountryConfirmCase(graphType,countryName);
+                    confirmCase = gd.getCountryConfirmCase(graphType, countryName);
                     showType.setValue(graphType);
-                    cb2.setValue(datee.get(datee.size()-1));
-                    casee = confirmCase.get(confirmCase.size()-1);
+                    cb2.setValue(datee.get(datee.size() - 1));
+                    casee = confirmCase.get(confirmCase.size() - 1);
 
-                    for(int i = 1; i < datee.size(); i++) {
-                            XYChart.Data<String, Number> data = new XYChart.Data<String,Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
-                            series.getData().add(data);
+                    for (int i = 1; i < datee.size(); i++) {
+                        XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
+                        series.getData().add(data);
                     }
                 } catch (Exception e) {
                     alert.setText("Please select the area.");
                 }
-                lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)) );
+                lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
             }
         });
 
         cb2.setOnAction(new EventHandler<ActionEvent>() {
+            /**
+             * The anonymous class for set a value of inflected case
+             * @param actionEvent action of cb2 ComboBox.
+             */
             @Override
-            public void handle(ActionEvent event) {
-                for(int i = 0 ; i < confirmCase.size(); i++){
-                    if(cb2.getValue() == datee.get(i)){
+            public void handle(ActionEvent actionEvent) {
+                for (int i = 0; i < confirmCase.size(); i++) {
+                    if (cb2.getValue() == datee.get(i)) {
                         casee = confirmCase.get(i);
                     }
-                    if((cb1.getValue() != null)) {
+                    if ((cb1.getValue() != null)) {
                         lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
                     }
                 }
@@ -185,26 +207,43 @@ public class LineChartController implements Initializable {
         });
     }
 
+    /**
+     * Method for switching Chart scene.
+     *
+     * @param event action of view ComboBox.
+     * @throws IOException when FXMLLoader can't find .fxml file.
+     */
     public void setScene(ActionEvent event) throws IOException {
         String fxml;
         fxml = view.getValue() + ".fxml";
         view.setValue(view.getValue());
         Parent chart = FXMLLoader.load(getClass().getResource("fxml/" + fxml));
         Scene charScene = new Scene(chart);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(charScene);
         window.show();
     }
 
+    /**
+     * Method for MainMenu button.
+     *
+     * @param event action of MainMenu Button.
+     * @throws IOException when FXMLLoader can't find the fxml file.
+     */
     public void mainMenuHandler(ActionEvent event) throws IOException {
         Parent chart = FXMLLoader.load(getClass().getResource("fxml/Menu.fxml"));
         Scene charScene = new Scene(chart);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(charScene);
         window.show();
     }
 
-    public void setAlert(String s) {
-        alert.setText(s);
+    /**
+     * Method for set a Text for display alert massage.
+     *
+     * @param alertText Text for display alert massage.
+     */
+    public void setAlert(String alertText) {
+        alert.setText(alertText);
     }
 }

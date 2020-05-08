@@ -3,11 +3,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.function.DoubleToIntFunction;
 
+/**
+ * Class for get all data for display in Covid19-Tracker Application.
+ *
+ * @author Bhatara Chaemchan Ske17
+ */
 public class GraphData {
-
-    public GraphData() {
-    }
-
+    /**
+     * Method for get date for display.
+     * @return date ArrayList of date.
+     * @throws Exception when URL not found.
+     */
     public ArrayList<String> getDate() throws Exception {
         ArrayList<String> date = new ArrayList<>();
 
@@ -17,7 +23,7 @@ public class GraphData {
 
         String inputLine;
         int i = 0;
-        while ((inputLine = in.readLine()) != null){
+        while ((inputLine = in.readLine()) != null) {
             if (i >= 1) {
                 date.add(inputLine.split(",")[0]);
             }
@@ -27,7 +33,14 @@ public class GraphData {
         return date;
     }
 
-    public String[] getWorldData(String where,String date) throws Exception {
+    /**
+     * Method that return a data of country and date for display from URL.
+     * @param where the location of data
+     * @param date the date of data
+     * @return worldData List of confirm cases, new cases, new deaths and total death for display.
+     * @throws Exception when URL not found.
+     */
+    public String[] getWorldData(String where, String date) throws Exception {
         ArrayList<String> allData = new ArrayList<>();
 
         URL oracle = new URL("https://covid.ourworldindata.org/data/ecdc/full_data.csv");
@@ -36,7 +49,7 @@ public class GraphData {
 
         String inputLine;
         int i = 0;
-        while ((inputLine = in.readLine()) != null){
+        while ((inputLine = in.readLine()) != null) {
             if (inputLine.split(",")[0].equalsIgnoreCase(date) && inputLine.split(",")[1].equalsIgnoreCase(where)) {
                 allData.add(inputLine);
             }
@@ -46,17 +59,23 @@ public class GraphData {
         return worldData;
     }
 
-
-    public ArrayList<String> getCountryConfirmCase(String type,String country) throws Exception{
+    /**
+     * Method that return a confirm cases, new cases, new deaths and total death for display from URL.
+     * @param type a type of data.
+     * @param country a country of data.
+     * @return ArrayList of confirm cases, new cases, new deaths and total death for display.
+     * @throws Exception when URL not found.
+     */
+    public ArrayList<String> getCountryConfirmCase(String type, String country) throws Exception {
 
         String url = "https://covid.ourworldindata.org/data/ecdc/new_deaths.csv";
 
-        if(type.equals("Total confirmed cases")) url = "https://covid.ourworldindata.org/data/ecdc/total_cases.csv";
-        else if(type.equals("Total deaths")) url = "https://covid.ourworldindata.org/data/ecdc/total_deaths.csv";
-        else if(type.equals( "New confirmed cases"))url = "https://covid.ourworldindata.org/data/ecdc/new_cases.csv";
+        if (type.equals("Total confirmed cases")) url = "https://covid.ourworldindata.org/data/ecdc/total_cases.csv";
+        else if (type.equals("Total deaths")) url = "https://covid.ourworldindata.org/data/ecdc/total_deaths.csv";
+        else if (type.equals("New confirmed cases")) url = "https://covid.ourworldindata.org/data/ecdc/new_cases.csv";
 
         String[] c = new String[0];
-        ArrayList<String> cc= new ArrayList<>();
+        ArrayList<String> data = new ArrayList<>();
         int index = 0;
 
         URL oracle = new URL(url);
@@ -65,33 +84,40 @@ public class GraphData {
 
         String inputLine;
 
-        if((inputLine = in.readLine()) != null){
+        if ((inputLine = in.readLine()) != null) {
             c = inputLine.split(",");
         }
 
-        for(int i = 0; i < c.length; i++){
-            if(c[i].equalsIgnoreCase(country)){
+        for (int i = 0; i < c.length; i++) {
+            if (c[i].equalsIgnoreCase(country)) {
                 index = i;
             }
         }
         int i = 0;
-        while((inputLine = in.readLine()) != null) {
+        while ((inputLine = in.readLine()) != null) {
 
-            if (!(inputLine.split(",")[index]).isEmpty()){ i = Integer.parseInt(inputLine.split(",")[index]); }
+            if (!(inputLine.split(",")[index]).isEmpty()) {
+                i = Integer.parseInt(inputLine.split(",")[index]);
+            }
 
             if (inputLine.split(",")[index].isEmpty()) {
-                cc.add(String.valueOf(i));
+                data.add(String.valueOf(i));
             } else {
-                cc.add(inputLine.split(",")[index]);
+                data.add(inputLine.split(",")[index]);
             }
         }
-        return cc;
+        return data;
     }
 
 
+    /**
+     * Method that return a country named.
+     * @return data data a List of Country named.
+     * @throws IOException when URL not found.
+     */
     public String[] getCountry() throws IOException {
 
-        String[] s = new String[0];
+        String[] data = new String[0];
         URL oracle = new URL("https://covid.ourworldindata.org/data/ecdc/total_cases.csv");
         URLConnection yc = oracle.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
@@ -99,15 +125,10 @@ public class GraphData {
         String inputLine;
 
         if ((inputLine = in.readLine()) != null) {
-            String ss = inputLine.substring(5,inputLine.length());
-            s = ss.split(",");
+            String ss = inputLine.substring(5, inputLine.length());
+            data = ss.split(",");
         }
-        return s;
+        return data;
     }
-
-    public static void main(String[] args) throws Exception {
-
-    }
-
 }
 
