@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -55,6 +56,9 @@ public class LineChartController implements Initializable {
     @FXML
     private Label lb2;
 
+    @FXML
+    public Label alert;
+
 
     String[] countryy ;
     String[] showTypee = new String[]{"Total confirmed cases", "Total deaths", "New confirmed cases", "New deaths"};
@@ -69,12 +73,13 @@ public class LineChartController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        alert.setText("");
         try {
             countryy = gd.getCountry();
             datee = gd.getDate();
             confirmCase = gd.getCountryConfirmCase(graphType,countryName);
         } catch (Exception e) {
-            System.out.println("URL Error.");
+            alert.setText("Please select the area.");
         }
 
         lb2.setText("last update: " + datee.get(datee.size()-1));
@@ -135,7 +140,7 @@ public class LineChartController implements Initializable {
                         series.getData().add(data);
                     }
                 } catch (Exception e) {
-                    System.out.println("Can't load data");
+                    alert.setText("Please select the area.");
                 }
             }
         });
@@ -144,6 +149,7 @@ public class LineChartController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
+                    alert.setText("");
                     series.getData().clear();
                     countryName = cb1.getValue();
                     lineChart.setTitle(countryName);
@@ -154,15 +160,11 @@ public class LineChartController implements Initializable {
                     casee = confirmCase.get(confirmCase.size()-1);
 
                     for(int i = 1; i < datee.size(); i++) {
-                        try {
                             XYChart.Data<String, Number> data = new XYChart.Data<String,Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
                             series.getData().add(data);
-                        }catch (Exception e){
-                            System.out.println("Can't load data");
-                        }
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    alert.setText("Please select the area.");
                 }
                 lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)) );
             }
@@ -200,5 +202,9 @@ public class LineChartController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(charScene);
         window.show();
+    }
+
+    public void setAlert(String s) {
+        alert.setText(s);
     }
 }

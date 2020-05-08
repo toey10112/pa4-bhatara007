@@ -33,10 +33,15 @@
                 <NumberAxis fx:id="yAxis" side="LEFT" />
               </yAxis>
             </BarChart>
-            <Label fx:id="lb2" layoutX="999.0" layoutY="631.0" prefHeight="18.0" prefWidth="171.0" text="Label" textFill="#00000092" />
+            <Label fx:id="lb2" layoutX="1009.0" layoutY="631.0" prefHeight="18.0" prefWidth="171.0" text="Label" textFill="#00000092" />
+            <Label fx:id="alert" layoutX="679.0" layoutY="539.0" prefHeight="47.0" prefWidth="405.0" text="Alert" textFill="#ff0000">
+               <font>
+                  <Font name="2548_D4" size="34.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <ComboBox fx:id="cb1" layoutX="459.0" layoutY="1.0" prefHeight="42.0" prefWidth="210.0" promptText="Country" style="-fx-background-color: #FFC107;">
+      <ComboBox fx:id="cb1" layoutX="459.0" layoutY="1.0" prefHeight="42.0" prefWidth="210.0" promptText="Area" style="-fx-background-color: #FFC107;">
          <effect>
             <Lighting diffuseConstant="2.0">
                <bumpInput>

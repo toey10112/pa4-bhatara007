@@ -1,6 +1,7 @@
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.function.DoubleToIntFunction;
 
 public class GraphData {
 
@@ -75,20 +76,13 @@ public class GraphData {
         }
         int i = 0;
         while((inputLine = in.readLine()) != null) {
-            try{
-                i = Integer.parseInt(inputLine.split(",")[index]);
 
-            }catch (Exception e){
-            }
+            if (!(inputLine.split(",")[index]).isEmpty()){ i = Integer.parseInt(inputLine.split(",")[index]); }
 
-            try {
-                if (inputLine.split(",")[index].isEmpty()) {
-                    cc.add(String.valueOf(i));
-                } else {
-                    cc.add(inputLine.split(",")[index]);
-                }
-            }catch (Exception e){
-
+            if (inputLine.split(",")[index].isEmpty()) {
+                cc.add(String.valueOf(i));
+            } else {
+                cc.add(inputLine.split(",")[index]);
             }
         }
         return cc;

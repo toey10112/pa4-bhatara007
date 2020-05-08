@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.net.URL;
@@ -52,6 +53,9 @@ public class BarChartController implements Initializable {
     @FXML
     private Label lb2;
 
+    @FXML
+    private Label alert;
+
     String[] countryy ;
     String[] showTypee = new String[]{"Total confirmed cases", "Total deaths", "New confirmed cases", "New deaths"};
     String[] vieww = new String[]{"BarChart","LineChart"};
@@ -65,12 +69,13 @@ public class BarChartController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        alert.setText("");
         try {
             countryy = gd.getCountry();
             datee = gd.getDate();
             confirmCase = gd.getCountryConfirmCase(graphType,countryName);
         } catch (Exception e) {
-            System.out.println("URL Error.");
+            alert.setText("Please select the area.");
         }
 
         mainMenu.setText("Main Menu");
@@ -112,15 +117,18 @@ public class BarChartController implements Initializable {
         showType.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                try {
                     series.setName(showType.getValue());
                     yAxis.setLabel(showType.getValue());
                     graphType = showType.getValue();
                     series.getData().clear();
                     barChart.setTitle(countryName);
                     barChart.setStyle("-fx-font-style: italic");
+                try {
                     confirmCase = gd.getCountryConfirmCase(graphType,countryName);
-                    cb2.setValue(datee.get(datee.size()-1));
+                } catch (Exception e) {
+                    alert.setText("Please select the area.");
+                }
+                cb2.setValue(datee.get(datee.size()-1));
                     casee = confirmCase.get(confirmCase.size()-1);
                     lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)) );
 
@@ -129,9 +137,6 @@ public class BarChartController implements Initializable {
                         series.getData().add(data);
                     }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         });
 
@@ -139,6 +144,7 @@ public class BarChartController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 try {
+                    alert.setText("");
                     series.getData().clear();
                     countryName = cb1.getValue();
                     barChart.setTitle(countryName);
@@ -149,14 +155,11 @@ public class BarChartController implements Initializable {
                     casee = confirmCase.get(confirmCase.size()-1);
 
                     for(int i = 1; i < datee.size(); i++) {
-                        try {
                             XYChart.Data<String, Number> data = new XYChart.Data<String,Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
                             series.getData().add(data);
-                        }catch (Exception e){
-                        }
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    alert.setText("Please select the area.");
                 }
                 lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)) );
             }
@@ -195,5 +198,9 @@ public class BarChartController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(charScene);
         window.show();
+    }
+
+    public void setAlert(String s) {
+        alert.setText(s);
     }
 }

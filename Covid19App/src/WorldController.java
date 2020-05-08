@@ -75,6 +75,16 @@ public class WorldController implements Initializable {
     double percent3 = 0;
     double percent4 = 0;
 
+    int indexOfTotalCaseIndex = 4;
+    int indexOfNewCase = 2;
+    int indexOfNewDeath = 3;
+    int indexOfTotalDeath = 5;
+
+    double divide1;
+    double divide2;
+    double divide3;
+    double divide4;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -92,15 +102,20 @@ public class WorldController implements Initializable {
         totalCases = String.format("%,d", Integer.parseInt(worldDataToday[4]));
         totalDeaths = String.format("%,d", Integer.parseInt(worldDataToday[5]));
 
-        percent1 = (convertDouble(worldDataToday[4]) - convertDouble(getWorldDataYesterday[4])) * 100 /convertDouble(getWorldDataYesterday[4]);
-        percent2 = (convertDouble(worldDataToday[2]) - convertDouble(getWorldDataYesterday[2])) * 100 /convertDouble(getWorldDataYesterday[2]);
-        percent3 = (convertDouble(worldDataToday[3]) - convertDouble(getWorldDataYesterday[3])) * 100 /convertDouble(getWorldDataYesterday[3]);
-        percent4 = (convertDouble(worldDataToday[5]) - convertDouble(getWorldDataYesterday[5])) * 100 /convertDouble(getWorldDataYesterday[5]);
+        divide1 = convertDouble(getWorldDataYesterday[indexOfTotalCaseIndex]);
+        divide2 = convertDouble(getWorldDataYesterday[indexOfNewCase]);
+        divide3 = convertDouble(getWorldDataYesterday[indexOfNewDeath]);
+        divide4 = convertDouble(getWorldDataYesterday[indexOfTotalDeath]);
 
-        if(Double.isNaN(percent1)) percent1 = 0;
-        if(Double.isNaN(percent2)) percent2 = 0;
-        if(Double.isNaN(percent3)) percent3 = 0;
-        if(Double.isNaN(percent4)) percent4 = 0;
+        if(divide1 == 0) divide1 = 1;
+        if(divide2 == 0) divide2 = 1;
+        if(divide3 == 0) divide3 = 1;
+        if(divide4 == 0) divide4 = 1;
+
+        percent1 = (convertDouble(worldDataToday[indexOfTotalCaseIndex]) - convertDouble(getWorldDataYesterday[indexOfTotalCaseIndex])) * 100 /divide1;
+        percent2 = (convertDouble(worldDataToday[indexOfNewCase]) - convertDouble(getWorldDataYesterday[indexOfNewCase])) * 100 /divide2;
+        percent3 = (convertDouble(worldDataToday[indexOfNewDeath]) - convertDouble(getWorldDataYesterday[indexOfNewDeath])) * 100 /divide3;
+        percent4 = (convertDouble(worldDataToday[indexOfTotalDeath]) - convertDouble(getWorldDataYesterday[indexOfTotalDeath])) * 100 /divide4;
 
         diff1 = String.format("( %.2f",percent1);
         diff2 = String.format("( %.2f",percent2);
@@ -116,8 +131,10 @@ public class WorldController implements Initializable {
         lb2.setText(newCase);
         lb3.setText(totalDeaths);
         lb4.setText(newDeaths);
+
         text.setText("World");
         date.setText("Date: " + worldDataToday[0]);
+
         t1.setText(diff1+"% )");
         t2.setText(diff2+"% )");
         t3.setText(diff3+"% )");
@@ -132,15 +149,10 @@ public class WorldController implements Initializable {
         return Double.parseDouble(s);
     }
 
-    public void cb1Handler(){
-        try {
-            worldDataToday = gd.getWorldData(cb1.getValue(),today);
-            getWorldDataYesterday = gd.getWorldData(cb1.getValue(),yesterday);
-        } catch (Exception e) {
-            System.out.println("URL Error");
-        }
+    public void cb1Handler() throws Exception{
+        worldDataToday = gd.getWorldData(cb1.getValue(),today);
+        getWorldDataYesterday = gd.getWorldData(cb1.getValue(),yesterday);
         text.setStyle("-fx-font-size: 64");
-
         if(cb1.getValue().equalsIgnoreCase("Bonaire Sint Eustatius and Saba")){
             text.setStyle("-fx-font-size: 55");
         }
@@ -149,15 +161,29 @@ public class WorldController implements Initializable {
         totalCases = String.format("%,d", convertInt(worldDataToday[4]));
         totalDeaths = String.format("%,d", convertInt(worldDataToday[5]));
 
-        percent1 = (convertDouble(worldDataToday[4]) - convertDouble(getWorldDataYesterday[4])) * 100 /convertDouble(getWorldDataYesterday[4]);
-        percent2 = (convertDouble(worldDataToday[2]) - convertDouble(getWorldDataYesterday[2])) * 100 /convertDouble(getWorldDataYesterday[2]);
-        percent3 = (convertDouble(worldDataToday[3]) - convertDouble(getWorldDataYesterday[3])) * 100 /convertDouble(getWorldDataYesterday[3]);
-        percent4 = (convertDouble(worldDataToday[5]) - convertDouble(getWorldDataYesterday[5])) * 100 /convertDouble(getWorldDataYesterday[5]);
+        System.out.println("worldDataToday");
+        for(String s: worldDataToday){
+            System.out.println(s+", ");
+        }
+        System.out.println("\ngetWorldDataYesterday");
+        for(String s: getWorldDataYesterday){
+            System.out.println(s+", ");
+        }
 
-        if(Double.isNaN(percent1)) percent1 = 0;
-        if(Double.isNaN(percent2)) percent2 = 0;
-        if(Double.isNaN(percent3)) percent3 = 0;
-        if(Double.isNaN(percent4)) percent4 = 0;
+        divide1 = convertDouble(getWorldDataYesterday[indexOfTotalCaseIndex]);
+        divide2 = convertDouble(getWorldDataYesterday[indexOfNewCase]);
+        divide3 = convertDouble(getWorldDataYesterday[indexOfNewDeath]);
+        divide4 = convertDouble(getWorldDataYesterday[indexOfTotalDeath]);
+
+        if(divide1 == 0) divide1 = 1;
+        if(divide2 == 0) divide2 = 1;
+        if(divide3 == 0) divide3 = 1;
+        if(divide4 == 0) divide4 = 1;
+
+        percent1 = (convertDouble(worldDataToday[indexOfTotalCaseIndex]) - convertDouble(getWorldDataYesterday[indexOfTotalCaseIndex])) * 100 /divide1;
+        percent2 = (convertDouble(worldDataToday[indexOfNewCase]) - convertDouble(getWorldDataYesterday[indexOfNewCase])) * 100 /divide2;
+        percent3 = (convertDouble(worldDataToday[indexOfNewDeath]) - convertDouble(getWorldDataYesterday[indexOfNewDeath])) * 100 /divide3;
+        percent4 = (convertDouble(worldDataToday[indexOfTotalDeath]) - convertDouble(getWorldDataYesterday[indexOfTotalDeath])) * 100 /divide4;
 
         diff1 = String.format("( %.2f",percent1);
         diff2 = String.format("( %.2f",percent2);
@@ -178,7 +204,9 @@ public class WorldController implements Initializable {
         lb2.setText(newCase);
         lb3.setText(totalDeaths);
         lb4.setText(newDeaths);
+
         text.setText(cb1.getValue());
+
         t1.setText(diff1+"% )");
         t2.setText(diff2+"% )");
         t3.setText(diff3+"% )");
