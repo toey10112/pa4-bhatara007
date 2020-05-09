@@ -90,12 +90,13 @@ public class WorldController implements Initializable {
     double divide3;
     double divide4;
 
+    GraphData gd = new GraphData();
+
     /**
      * Method for display a WorldSummary window.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GraphData gd = new GraphData();
         try {
             cb1.getItems().addAll(gd.getCountry());
             today = gd.getDate().get(gd.getDate().size() - 1);
@@ -105,6 +106,77 @@ public class WorldController implements Initializable {
         } catch (Exception e) {
             System.out.println("URL Error");
         }
+        cb1.getItems().remove("International");
+        setAll();
+    }
+
+    /**
+     * Method for convert String to Integer.
+     * @param s String for convert.
+     * @return val the Integer value of String.
+     */
+    public int convertInt(String s) {
+        int val = Integer.parseInt(s);
+        return val;
+    }
+
+    /**
+     * Method for convert String to Integer.
+     * @param s String for convert.
+     * @return val the double value of String.
+     */
+    public double convertDouble(String s) {
+        double val = Double.parseDouble(s);
+        return val;
+    }
+
+    /**
+     * Method for set the new value for display in World.fxml.
+     * @throws Exception when URL not found.
+     */
+    public void cb1Handler() throws Exception {
+        GraphData gd = new GraphData();
+        worldDataToday = gd.getWorldData(cb1.getValue(), today);
+        getWorldDataYesterday = gd.getWorldData(cb1.getValue(), yesterday);
+        text.setStyle("-fx-font-size: 50");
+        if (cb1.getValue().length() > 18) {
+            text.setStyle("-fx-font-size: 35");
+        }
+        newCase = String.format("%,d", convertInt(worldDataToday[2]));
+        newDeaths = String.format("%,d", convertInt(worldDataToday[3]));
+        totalCases = String.format("%,d", convertInt(worldDataToday[4]));
+        totalDeaths = String.format("%,d", convertInt(worldDataToday[5]));
+
+        setAll();
+
+        text.setText(cb1.getValue());
+
+    }
+
+    /**
+     * Method for MainMenu button.
+     * @param event action of MainMenu button.
+     * @throws IOException when fxml file not found.
+     */
+    @FXML
+    public void mainMenuHandler(ActionEvent event) throws IOException {
+        Parent chart = FXMLLoader.load(getClass().getResource("fxml/Menu.fxml"));
+        Scene charScene = new Scene(chart);
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        window.setScene(charScene);
+        window.show();
+    }
+
+    /**
+     * Method that set all data for display onscreen.
+     */
+    public void setAll(){
+
+        //set text fill color.
+        t1.setStyle("-fx-fill: forestgreen");
+        t2.setStyle("-fx-fill: forestgreen");
+        t3.setStyle("-fx-fill: forestgreen");
+        t4.setStyle("-fx-fill: forestgreen");
 
         // formatted String of the values for display.
         newCase = String.format("%,d", Integer.parseInt(worldDataToday[2]));
@@ -164,111 +236,5 @@ public class WorldController implements Initializable {
         t2.setText(diff2 + "% )");
         t3.setText(diff3 + "% )");
         t4.setText(diff4 + "% )");
-    }
-
-    /**
-     * Method for convert String to Integer.
-     * @param s String for convert.
-     * @return val the Integer value of String.
-     */
-    public int convertInt(String s) {
-        int val = Integer.parseInt(s);
-        return val;
-    }
-
-    /**
-     * Method for convert String to Integer.
-     * @param s String for convert.
-     * @return val the double value of String.
-     */
-    public double convertDouble(String s) {
-        double val = Double.parseDouble(s);
-        return val;
-    }
-
-    /**
-     * Method for set the new value for display in World.fxml.
-     * @throws Exception when URL not found.
-     */
-    public void cb1Handler() throws Exception {
-        GraphData gd = new GraphData();
-        worldDataToday = gd.getWorldData(cb1.getValue(), today);
-        getWorldDataYesterday = gd.getWorldData(cb1.getValue(), yesterday);
-        text.setStyle("-fx-font-size: 64");
-        if (cb1.getValue().equalsIgnoreCase("Bonaire Sint Eustatius and Saba")) {
-            text.setStyle("-fx-font-size: 55");
-        }
-        newCase = String.format("%,d", convertInt(worldDataToday[2]));
-        newDeaths = String.format("%,d", convertInt(worldDataToday[3]));
-        totalCases = String.format("%,d", convertInt(worldDataToday[4]));
-        totalDeaths = String.format("%,d", convertInt(worldDataToday[5]));
-
-        divide1 = convertDouble(getWorldDataYesterday[indexOfTotalCaseIndex]);
-        divide2 = convertDouble(getWorldDataYesterday[indexOfNewCase]);
-        divide3 = convertDouble(getWorldDataYesterday[indexOfNewDeath]);
-        divide4 = convertDouble(getWorldDataYesterday[indexOfTotalDeath]);
-
-        if (divide1 == 0) divide1 = 1;
-        if (divide2 == 0) divide2 = 1;
-        if (divide3 == 0) divide3 = 1;
-        if (divide4 == 0) divide4 = 1;
-
-        percent1 = (convertDouble(worldDataToday[indexOfTotalCaseIndex]) - convertDouble(getWorldDataYesterday[indexOfTotalCaseIndex])) * 100 / divide1;
-        percent2 = (convertDouble(worldDataToday[indexOfNewCase]) - convertDouble(getWorldDataYesterday[indexOfNewCase])) * 100 / divide2;
-        percent3 = (convertDouble(worldDataToday[indexOfNewDeath]) - convertDouble(getWorldDataYesterday[indexOfNewDeath])) * 100 / divide3;
-        percent4 = (convertDouble(worldDataToday[indexOfTotalDeath]) - convertDouble(getWorldDataYesterday[indexOfTotalDeath])) * 100 / divide4;
-
-        diff1 = String.format("( %.2f", percent1);
-        diff2 = String.format("( %.2f", percent2);
-        diff3 = String.format("( %.2f", percent3);
-        diff4 = String.format("( %.2f", percent4);
-
-        t1.setStyle("-fx-fill: forestgreen");
-        t2.setStyle("-fx-fill: forestgreen");
-        t3.setStyle("-fx-fill: forestgreen");
-        t4.setStyle("-fx-fill: forestgreen");
-
-        if (percent1 > 0) {
-            diff1 = String.format("( +%.2f", percent1);
-            t1.setStyle("-fx-fill: red");
-        }
-        if (percent2 > 0) {
-            diff2 = String.format("( +%.2f", percent2);
-            t2.setStyle("-fx-fill: red");
-        }
-        if (percent3 > 0) {
-            diff3 = String.format("( +%.2f", percent3);
-            t3.setStyle("-fx-fill: red");
-        }
-        if (percent4 > 0) {
-            diff4 = String.format("( +%.2f", percent4);
-            t4.setStyle("-fx-fill: red");
-        }
-
-        lb1.setText(totalCases);
-        lb2.setText(newCase);
-        lb3.setText(totalDeaths);
-        lb4.setText(newDeaths);
-
-        text.setText(cb1.getValue());
-
-        t1.setText(diff1 + "% )");
-        t2.setText(diff2 + "% )");
-        t3.setText(diff3 + "% )");
-        t4.setText(diff4 + "% )");
-    }
-
-    /**
-     * Method for MainMenu button.
-     * @param event action of MainMenu button.
-     * @throws IOException when fxml file not found.
-     */
-    @FXML
-    public void mainMenuHandler(ActionEvent event) throws IOException {
-        Parent chart = FXMLLoader.load(getClass().getResource("fxml/Menu.fxml"));
-        Scene charScene = new Scene(chart);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(charScene);
-        window.show();
     }
 }

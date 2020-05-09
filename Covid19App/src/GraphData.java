@@ -122,7 +122,7 @@ public class GraphData {
     /**
      * Method that return a country named.
      *
-     * @return data data a List of Country named.
+     * @return data a List of Country named.
      * @throws IOException when URL not found.
      */
     public String[] getCountry() throws IOException {
