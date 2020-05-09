@@ -72,12 +72,14 @@ public class BarChartController implements Initializable {
     String graphType = "Total confirmed cases";
     String casee;
 
+    GraphData gd = new GraphData(); //Create Graphdata Object for get data.
+    XYChart.Series series = new XYChart.Series();
+
     /**
      * Method for display a BarChart from FXML files.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GraphData gd = new GraphData(); //Create Graphdata Object for get data.
 
         alert.setText("");
         try {
@@ -102,8 +104,6 @@ public class BarChartController implements Initializable {
         cb2.getItems().addAll(ob2);
         showType.getItems().addAll(ob3);
         view.getItems().addAll(ob4);
-
-        XYChart.Series series = new XYChart.Series();
 
         showType.setValue(graphType);
         series.setName("Covid19 confirm cases");
@@ -132,26 +132,7 @@ public class BarChartController implements Initializable {
              */
             @Override
             public void handle(ActionEvent actionEvent) {
-                series.setName(showType.getValue());
-                yAxis.setLabel(showType.getValue());
-                graphType = showType.getValue();
-                series.getData().clear();
-                barChart.setTitle(countryName);
-                barChart.setStyle("-fx-font-style: italic");
-                try {
-                    confirmCase = gd.getCountryConfirmCase(graphType, countryName);
-                } catch (Exception e) {
-                    alert.setText("Please select the area.");
-                }
-                cb2.setValue(datee.get(datee.size() - 1));
-                casee = confirmCase.get(confirmCase.size() - 1);
-                lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
-
-                for (int i = 1; i < datee.size(); i++) {
-                    XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
-                    series.getData().add(data);
-                }
-
+                setAll();
             }
         });
 
@@ -163,25 +144,8 @@ public class BarChartController implements Initializable {
              */
             @Override
             public void handle(ActionEvent actionEvent) {
-                try {
-                    alert.setText("");
-                    series.getData().clear();
-                    countryName = cb1.getValue();
-                    barChart.setTitle(countryName);
-                    barChart.setStyle("-fx-font-style: italic");
-                    confirmCase = gd.getCountryConfirmCase(graphType, countryName);
-                    showType.setValue(graphType);
-                    cb2.setValue(datee.get(datee.size() - 1));
-                    casee = confirmCase.get(confirmCase.size() - 1);
-
-                    for (int i = 1; i < datee.size(); i++) {
-                        XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
-                        series.getData().add(data);
-                    }
-                } catch (Exception e) {
-                    alert.setText("Please select the area.");
-                }
-                lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
+                alert.setText("");
+                setAll();
             }
         });
 
@@ -202,6 +166,32 @@ public class BarChartController implements Initializable {
                 }
             }
         });
+    }
+
+    /**
+     * Method that set all data for display.
+     */
+    public void setAll() {
+        try {
+            alert.setText("");
+            series.getData().clear();
+            countryName = cb1.getValue();
+            barChart.setTitle(countryName);
+            barChart.setStyle("-fx-font-style: italic");
+            confirmCase = gd.getCountryConfirmCase(graphType, countryName);
+            showType.setValue(graphType);
+            cb2.setValue(datee.get(datee.size() - 1));
+            casee = confirmCase.get(confirmCase.size() - 1);
+
+            for (int i = 1; i < datee.size(); i++) {
+                XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
+                series.getData().add(data);
+            }
+        } catch (Exception e) {
+            alert.setText("Please select the area.");
+        }
+        lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
+
     }
 
     /**

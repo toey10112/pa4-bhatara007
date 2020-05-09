@@ -11,6 +11,7 @@ import java.util.function.DoubleToIntFunction;
 public class GraphData {
     /**
      * Method for get date for display.
+     *
      * @return date ArrayList of date.
      * @throws Exception when URL not found.
      */
@@ -35,8 +36,9 @@ public class GraphData {
 
     /**
      * Method that return a data of country and date for display from URL.
+     *
      * @param where the location of data
-     * @param date the date of data
+     * @param date  the date of data
      * @return worldData List of confirm cases, new cases, new deaths and total death for display.
      * @throws Exception when URL not found.
      */
@@ -61,7 +63,8 @@ public class GraphData {
 
     /**
      * Method that return a confirm cases, new cases, new deaths and total death for display from URL.
-     * @param type a type of data.
+     *
+     * @param type    a type of data.
      * @param country a country of data.
      * @return ArrayList of confirm cases, new cases, new deaths and total death for display.
      * @throws Exception when URL not found.
@@ -69,6 +72,9 @@ public class GraphData {
     public ArrayList<String> getCountryConfirmCase(String type, String country) throws Exception {
 
         String url = "https://covid.ourworldindata.org/data/ecdc/new_deaths.csv";
+        String canNotloadFromDate = "";
+        String canNotloadToDate = "";
+        int count = 1;
 
         if (type.equals("Total confirmed cases")) url = "https://covid.ourworldindata.org/data/ecdc/total_cases.csv";
         else if (type.equals("Total deaths")) url = "https://covid.ourworldindata.org/data/ecdc/total_deaths.csv";
@@ -95,15 +101,18 @@ public class GraphData {
         }
         int i = 0;
         while ((inputLine = in.readLine()) != null) {
+            try {
+                if (!(inputLine.split(",")[index]).isEmpty()) {
+                    i = Integer.parseInt(inputLine.split(",")[index]);
+                }
 
-            if (!(inputLine.split(",")[index]).isEmpty()) {
-                i = Integer.parseInt(inputLine.split(",")[index]);
-            }
-
-            if (inputLine.split(",")[index].isEmpty()) {
-                data.add(String.valueOf(i));
-            } else {
-                data.add(inputLine.split(",")[index]);
+                if (inputLine.split(",")[index].isEmpty()) {
+                    data.add(String.valueOf(i));
+                } else {
+                    data.add(inputLine.split(",")[index]);
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                data.add("0");
             }
         }
         return data;
@@ -112,6 +121,7 @@ public class GraphData {
 
     /**
      * Method that return a country named.
+     *
      * @return data data a List of Country named.
      * @throws IOException when URL not found.
      */

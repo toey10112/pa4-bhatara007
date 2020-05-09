@@ -3,7 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/pa4_bhatara007_jar</output-path>
     <root id="archive" name="pa4-bhatara007.jar">
       <element id="module-output" name="pa4-bhatara007" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/Covid19-Tracker.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
