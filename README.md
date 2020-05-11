@@ -10,8 +10,8 @@ This project focuses on updating real time Covid-19 disease data from online sou
 ## Main Features
 
 - Get real time Covid19 disease data.
+- Show pecentage different of Covid19 disease information day by day.
 - Create historical line graphs of Covid19 disease data.
-- Get Covid19 information ;  total confirm cases, new confirm cases, new deaths and total deaths.
 
 
 ## How to run?
