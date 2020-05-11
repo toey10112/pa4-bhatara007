@@ -42,7 +42,7 @@ public class GraphData {
      * @return worldData List of confirm cases, new cases, new deaths and total death for display.
      * @throws Exception when URL not found.
      */
-    public String[] getWorldData(String where, String date) throws Exception {
+    public static String[] getWorldData(String where, String date) throws Exception {
         ArrayList<String> allData = new ArrayList<>();
 
         URL oracle = new URL("https://covid.ourworldindata.org/data/ecdc/full_data.csv");
@@ -139,6 +139,9 @@ public class GraphData {
             data = ss.split(",");
         }
         return data;
+    }
+
+    public static void main(String[] args) {
     }
 }
 

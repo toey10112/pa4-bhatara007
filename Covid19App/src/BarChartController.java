@@ -80,7 +80,7 @@ public class BarChartController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        //get data from GraphData class
         alert.setText("");
         try {
             nameOfCountry = gd.getCountry();
@@ -95,6 +95,7 @@ public class BarChartController implements Initializable {
 
         casee = confirmCase.get(confirmCase.size() - 1);
 
+        //add all component to all ComboBox;
         ObservableList<String> ob1 = FXCollections.observableArrayList(nameOfCountry);
         ObservableList<String> ob2 = FXCollections.observableArrayList(datee);
         ObservableList<String> ob3 = FXCollections.observableArrayList(typesOfView);
@@ -105,6 +106,7 @@ public class BarChartController implements Initializable {
         showType.getItems().addAll(ob3);
         view.getItems().addAll(ob4);
 
+        //set all data for Chart
         showType.setValue(graphType);
         series.setName("Covid19 confirm cases");
         lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
