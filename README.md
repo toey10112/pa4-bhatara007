@@ -31,6 +31,7 @@ First you need to open **command prompt (for Windows)** or **terminal (for OSX)*
 
 ## Credit
 [Coronavirus source data](https://ourworldindata.org/coronavirus-source-data)
+
 .csv files:
 - [Total confirmed cases](https://covid.ourworldindata.org/data/ecdc/total_cases.csv)
 - [Total deaths](https://covid.ourworldindata.org/data/ecdc/total_deaths.csv)
