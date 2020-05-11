@@ -103,11 +103,11 @@ public class WorldController implements Initializable {
             yesterday = gd.getDate().get(gd.getDate().size() - 2);
             worldDataToday = gd.getWorldData("World", today);
             getWorldDataYesterday = gd.getWorldData("World", yesterday);
+            cb1.getItems().remove("International");
+            setAll();
         } catch (Exception e) {
-            System.out.println("URL Error");
+            noUpdateAlert();
         }
-        cb1.getItems().remove("International");
-        setAll();
     }
 
     /**
@@ -135,21 +135,24 @@ public class WorldController implements Initializable {
      * @throws Exception when URL not found.
      */
     public void cb1Handler() throws Exception {
-        GraphData gd = new GraphData();
-        worldDataToday = gd.getWorldData(cb1.getValue(), today);
-        getWorldDataYesterday = gd.getWorldData(cb1.getValue(), yesterday);
+        try {
+            GraphData gd = new GraphData();
+            worldDataToday = gd.getWorldData(cb1.getValue(), today);
+            getWorldDataYesterday = gd.getWorldData(cb1.getValue(), yesterday);
+            newCase = String.format("%,d", convertInt(worldDataToday[2]));
+            newDeaths = String.format("%,d", convertInt(worldDataToday[3]));
+            totalCases = String.format("%,d", convertInt(worldDataToday[4]));
+            totalDeaths = String.format("%,d", convertInt(worldDataToday[5]));
+
+            setAll();
+            text.setText(cb1.getValue());
+        }catch (Exception e){
+            noUpdateAlert();
+        }
         text.setStyle("-fx-font-size: 50");
         if (cb1.getValue().length() > 18) {
             text.setStyle("-fx-font-size: 35");
         }
-        newCase = String.format("%,d", convertInt(worldDataToday[2]));
-        newDeaths = String.format("%,d", convertInt(worldDataToday[3]));
-        totalCases = String.format("%,d", convertInt(worldDataToday[4]));
-        totalDeaths = String.format("%,d", convertInt(worldDataToday[5]));
-
-        setAll();
-
-        text.setText(cb1.getValue());
 
     }
 
@@ -172,7 +175,7 @@ public class WorldController implements Initializable {
      */
     public void setAll(){
 
-        //set text fill color.
+        //set percentage fill color.
         t1.setStyle("-fx-fill: forestgreen");
         t2.setStyle("-fx-fill: forestgreen");
         t3.setStyle("-fx-fill: forestgreen");
@@ -236,5 +239,21 @@ public class WorldController implements Initializable {
         t2.setText(diff2 + "% )");
         t3.setText(diff3 + "% )");
         t4.setText(diff4 + "% )");
+    }
+
+    /**
+     * Method for set Alert massage when we don't have a today data for display
+     */
+    public void noUpdateAlert() {
+        date.setText("No update data for today.");
+        text.setText(cb1.getValue());
+        lb1.setText("-");
+        lb2.setText("-");
+        lb3.setText("-");
+        lb4.setText("-");
+        t1.setText("");
+        t2.setText("");
+        t3.setText("");
+        t4.setText("");
     }
 }
