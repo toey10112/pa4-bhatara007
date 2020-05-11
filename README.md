@@ -7,7 +7,7 @@ New deaths
 Total deaths 
 This project focuses on updating real time Covid-19 disease data from online sources and learns how to create a good GUI interface from JavaFX.
 
-##Main Features
+## Main Features
 
 - Get real time Covid19 disease data.
 - Create historical line graphs of Covid19 disease data.
@@ -16,7 +16,7 @@ This project focuses on updating real time Covid-19 disease data from online sou
 
 ## How to run?
 
-First you need to open **command prompt (for Windows)** or **terminal (for OSX)** and access CovidTracker.jar directory 
+First you need to open **command prompt (for Windows)** or **terminal (for OSX)** and access CovidTracker.jar directory.
 
 **for java sdk 8 type this command:**
 > java -jar Covid19-Tracker.jar
