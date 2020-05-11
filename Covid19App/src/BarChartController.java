@@ -92,7 +92,6 @@ public class BarChartController implements Initializable {
 
         mainMenu.setText("Main Menu");
         lb2.setText("last update: " + datee.get(datee.size() - 1));
-
         casee = confirmCase.get(confirmCase.size() - 1);
 
         //add all component to all ComboBox;
@@ -127,16 +126,25 @@ public class BarChartController implements Initializable {
         }
 
         showType.setOnAction(new EventHandler<ActionEvent>() {
-            /**
-             * The anonymous class for set any component on window
-             * and the data of chart.
-             * @param actionEvent action of showType ComboBox.
-             */
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                setAll();
-            }
-        });
+         /**
+          * The anonymous class for set any component on window
+          * and the data of chart.
+          *
+          * @param actionEvent action of showType ComboBox.
+          */
+         @Override
+         public void handle(ActionEvent actionEvent) {
+             try {
+                 series.setName(showType.getValue());
+                 yAxis.setLabel(showType.getValue());
+                 graphType = showType.getValue();
+                 series.getData().clear();
+                 setAll();
+             } catch (Exception e) {
+                 alert.setText("Please select the area.");
+             }
+         }
+     });
 
         cb1.setOnAction(new EventHandler<ActionEvent>() {
             /**
@@ -147,6 +155,8 @@ public class BarChartController implements Initializable {
             @Override
             public void handle(ActionEvent actionEvent) {
                 alert.setText("");
+                series.getData().clear();
+                countryName = cb1.getValue();
                 setAll();
             }
         });
@@ -176,12 +186,11 @@ public class BarChartController implements Initializable {
     public void setAll() {
         try {
             alert.setText("");
-            series.getData().clear();
-            countryName = cb1.getValue();
             barChart.setTitle(countryName);
-            barChart.setStyle("-fx-font-style: italic");
+
             confirmCase = gd.getCountryConfirmCase(graphType, countryName);
             showType.setValue(graphType);
+
             cb2.setValue(datee.get(datee.size() - 1));
             casee = confirmCase.get(confirmCase.size() - 1);
 
@@ -190,7 +199,7 @@ public class BarChartController implements Initializable {
                 series.getData().add(data);
             }
         } catch (Exception e) {
-            alert.setText("Please select the area.");
+            e.printStackTrace();
         }
         lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
 

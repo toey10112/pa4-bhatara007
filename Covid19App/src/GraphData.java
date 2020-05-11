@@ -42,7 +42,7 @@ public class GraphData {
      * @return worldData List of confirm cases, new cases, new deaths and total death for display.
      * @throws Exception when URL not found.
      */
-    public static String[] getWorldData(String where, String date) throws Exception {
+    public String[] getWorldData(String where, String date) throws Exception {
         ArrayList<String> allData = new ArrayList<>();
 
         URL oracle = new URL("https://covid.ourworldindata.org/data/ecdc/full_data.csv");
@@ -69,12 +69,9 @@ public class GraphData {
      * @return ArrayList of confirm cases, new cases, new deaths and total death for display.
      * @throws Exception when URL not found.
      */
-    public ArrayList<String> getCountryConfirmCase(String type, String country) throws Exception {
+    public static ArrayList<String> getCountryConfirmCase(String type, String country) throws Exception {
 
         String url = "https://covid.ourworldindata.org/data/ecdc/new_deaths.csv";
-        String canNotloadFromDate = "";
-        String canNotloadToDate = "";
-        int count = 1;
 
         if (type.equals("Total confirmed cases")) url = "https://covid.ourworldindata.org/data/ecdc/total_cases.csv";
         else if (type.equals("Total deaths")) url = "https://covid.ourworldindata.org/data/ecdc/total_deaths.csv";
@@ -141,7 +138,10 @@ public class GraphData {
         return data;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        for(String s: getCountryConfirmCase("Total deaths","Thailand")){
+            System.out.println(s);
+        }
     }
 }
 
