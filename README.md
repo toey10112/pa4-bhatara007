@@ -38,6 +38,11 @@ Menu              | World Summary           |  Charts             |
 
 ![](https://github.com/OOP2020/pa4-bhatara007/blob/master/photo/UML.png)
 
+## Technology Used
+   - Java URL to get realtime data from online source.
+   - JavaFX.fxml for design Ghaphic interface from Scene Builder Application.  
+   - javafx.scene.chart to create BarChart and LineChart.
+
 ## Credit
 [Coronavirus source data](https://ourworldindata.org/coronavirus-source-data)
 
