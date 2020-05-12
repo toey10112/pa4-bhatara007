@@ -30,13 +30,10 @@ First you need to open **command prompt (for Windows)** or **terminal (for OSX)*
 >java --module-path /Users/admin/Downloads/javafx-sdk-11.0.2/lib/ --add-modules javafx.controls,javafx.fxml -jar Covid19-Tracker.jar
 ## GUI Design
 
-<<<<<<< HEAD
 Menu              | World Summary           |  Charts             |
 :---------------:|:----------:|:------------:
 ![](https://github.com/OOP2020/pa4-bhatara007/blob/master/photo/Screen%20Shot%202563-05-13%20at%2001.20.40.png)  |  ![](https://github.com/OOP2020/pa4-bhatara007/blob/master/photo/Screen%20Shot%202563-05-13%20at%2001.20.45.png) | ![](https://github.com/OOP2020/pa4-bhatara007/blob/master/photo/Screen%20Shot%202563-05-13%20at%2001.20.52.png)
 
-=======
->>>>>>> 1ae5caee7621e5df5318096c77b7aa3c10dc7e59
 ## UML Diagram
 
 ![](https://github.com/OOP2020/pa4-bhatara007/blob/master/photo/UML.png)
