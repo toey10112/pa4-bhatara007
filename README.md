@@ -29,8 +29,6 @@ First you need to open **command prompt (for Windows)** or **terminal (for OSX)*
 
 >java --module-path /Users/admin/Downloads/javafx-sdk-11.0.2/lib/ --add-modules javafx.controls,javafx.fxml -jar Covid19-Tracker.jar
 
-<<<<<<< HEAD
-=======
 ## Credit
 [Coronavirus source data](https://ourworldindata.org/coronavirus-source-data)
 
@@ -40,7 +38,6 @@ The updated .csv files here:
 - [New confirmed cases](https://covid.ourworldindata.org/data/ecdc/new_cases.csv)
 - [New deaths](https://covid.ourworldindata.org/data/ecdc/new_deaths.csv)
 
->>>>>>> ef44309284f07e9de0e638269f6e30611af7f390
 
 
 
