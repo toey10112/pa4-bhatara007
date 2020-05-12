@@ -29,6 +29,10 @@ First you need to open **command prompt (for Windows)** or **terminal (for OSX)*
 
 >java --module-path /Users/admin/Downloads/javafx-sdk-11.0.2/lib/ --add-modules javafx.controls,javafx.fxml -jar Covid19-Tracker.jar
 
+##UML Diagram
+
+![](https://github.com/OOP2020/pa4-bhatara007/blob/master/photo/UML.png)
+
 ## Credit
 [Coronavirus source data](https://ourworldindata.org/coronavirus-source-data)
 
