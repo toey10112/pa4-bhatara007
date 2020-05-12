@@ -137,11 +137,5 @@ public class GraphData {
         }
         return data;
     }
-
-    public static void main(String[] args) throws Exception {
-        for(String s: getCountryConfirmCase("Total deaths","Thailand")){
-            System.out.println(s);
-        }
-    }
 }
 

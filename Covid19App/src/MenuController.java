@@ -35,6 +35,7 @@ public class MenuController {
         Scene charScene = new Scene(worldSummary);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(charScene);
+        window.setResizable(false);
         window.show();
 
     }
@@ -50,6 +51,7 @@ public class MenuController {
         Scene charScene = new Scene(chart);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(charScene);
+        window.setResizable(false);
         window.show();
     }
 

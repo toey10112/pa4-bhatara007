@@ -177,9 +177,7 @@ public class LineChartController implements Initializable {
                     if (cb2.getValue() == datee.get(i)) {
                         casee = confirmCase.get(i);
                     }
-                    if ((cb1.getValue() != null)) {
-                        lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
-                    }
+                    lb1.setText(String.format("%s : %,d cases", graphType, Integer.parseInt(casee)));
                 }
             }
         });
@@ -239,6 +237,7 @@ public class LineChartController implements Initializable {
         Scene charScene = new Scene(chart);
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
         window.setScene(charScene);
+        window.setResizable(false);
         window.show();
     }
 

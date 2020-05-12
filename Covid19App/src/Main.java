@@ -19,6 +19,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/Menu.fxml"));
         primaryStage.setTitle("Covid19 Tracker");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
