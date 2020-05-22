@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     /**
-     * Method for initialize screen.
+     * Method to initialize scene and stage.
      */
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/Menu.fxml"));
