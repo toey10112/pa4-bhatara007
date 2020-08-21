@@ -1,7 +1,7 @@
 # Covid19 Tracker
 ## Introduction
 Covid 19 tracker Application gives you real time Covid-19 disease data of more than 200 countries since 2020-1-1 as follows :
-Total confirmed cases 
+Total confirmed cases. 
 New confirm cases 
 New deaths
 Total deaths 
