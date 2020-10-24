@@ -175,6 +175,9 @@ public class BarChartController implements Initializable {
         });
     }
 
+    /***
+     * Method for draw a BarChart
+     */
     private void drawBarChart() {
         for (int i = 1; i < datee.size(); i++) {
             XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
@@ -237,5 +240,5 @@ public class BarChartController implements Initializable {
         window.show();
     }
 
-    
+
 }

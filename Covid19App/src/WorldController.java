@@ -110,10 +110,9 @@ public class WorldController implements Initializable  {
      * @return val the Integer value of String.
      */
 
-//    public int convertInt(String s) {
-//        int val = Integer.parseInt(s);
-//        return val;
-//    }
+    public int convertInt(String s) {
+        return Integer.parseInt(s);
+    }
 
     /**
      * Method for convert String to Integer.
@@ -126,9 +125,9 @@ public class WorldController implements Initializable  {
 
     /**
      * Method for set the new value for display in World.fxml.
-     * @throws Exception when URL not found.
+     *
      */
-    public void cb1Handler() throws Exception {
+    public void cb1Handler()  {
         try {
 //            GraphData gd = new GraphData();
             worldDataToday = gd.getWorldData(cb1.getValue(), today);
@@ -255,12 +254,15 @@ public class WorldController implements Initializable  {
         t4.setText("");
     }
 
+    /***
+     * method for set text (newCase , newDeaths , totalCase and totalDeath)
+     */
     public void setString(){
         // formatted String of the values for display.
-        newCase = String.format("%,d", Integer.parseInt(worldDataToday[2]));
-        newDeaths = String.format("%,d", Integer.parseInt(worldDataToday[3]));
-        totalCases = String.format("%,d", Integer.parseInt(worldDataToday[4]));
-        totalDeaths = String.format("%,d", Integer.parseInt(worldDataToday[5]));
+        newCase = String.format("%,d", convertInt(worldDataToday[2]));
+        newDeaths = String.format("%,d", convertInt(worldDataToday[3]));
+        totalCases = String.format("%,d", convertInt(worldDataToday[4]));
+        totalDeaths = String.format("%,d", convertInt(worldDataToday[5]));
 
     }
 
