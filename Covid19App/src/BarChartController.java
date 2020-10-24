@@ -120,10 +120,7 @@ public class BarChartController implements Initializable {
 
         view.setValue("BarChart");
 
-        for (int i = 1; i < datee.size(); i++) {
-            XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
-            series.getData().add(data);
-        }
+        drawBarChart();
 
         showType.setOnAction(new EventHandler<ActionEvent>() {
          /**
@@ -178,6 +175,13 @@ public class BarChartController implements Initializable {
         });
     }
 
+    private void drawBarChart() {
+        for (int i = 1; i < datee.size(); i++) {
+            XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
+            series.getData().add(data);
+        }
+    }
+
     /**
      * Method that set all data for display.
      */
@@ -192,10 +196,7 @@ public class BarChartController implements Initializable {
             cb2.setValue(datee.get(datee.size() - 1));
             casee = confirmCase.get(confirmCase.size() - 1);
 
-            for (int i = 1; i < datee.size(); i++) {
-                XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
-                series.getData().add(data);
-            }
+            drawBarChart();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -236,12 +237,5 @@ public class BarChartController implements Initializable {
         window.show();
     }
 
-    /**
-     * Method for set a Text for display alert massage.
-     *
-     * @param alertText Text for display alert massage.
-     */
-    public void setAlert(String alertText) {
-        alert.setText(alertText);
-    }
+    
 }

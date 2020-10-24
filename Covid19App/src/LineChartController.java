@@ -12,7 +12,6 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -30,8 +29,6 @@ import java.util.ResourceBundle;
 public class LineChartController implements Initializable {
 
     //initialize FXML attributes.
-    @FXML
-    private Button mainMenu;
 
     @FXML
     private ComboBox<String> cb1;
@@ -126,7 +123,7 @@ public class LineChartController implements Initializable {
         view.setValue("LineChart");
 
         for (int i = 1; i < datee.size(); i++) {
-            XYChart.Data<String, Number> data = new XYChart.Data<String, Number>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
+            XYChart.Data<String, Number> data = new XYChart.Data<>(String.valueOf(datee.get(i)), Integer.parseInt(confirmCase.get(i)));
             series.getData().add(data);
         }
 

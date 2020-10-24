@@ -1,7 +1,9 @@
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.function.DoubleToIntFunction;
 
 /**
  * Class for get all data for display in Covid19-Tracker Application.
@@ -50,15 +52,13 @@ public class GraphData {
         BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
 
         String inputLine;
-        int i = 0;
         while ((inputLine = in.readLine()) != null) {
             if (inputLine.split(",")[0].equalsIgnoreCase(date) && inputLine.split(",")[1].equalsIgnoreCase(where)) {
                 allData.add(inputLine);
             }
         }
-        String[] worldData = allData.get(allData.size() - 1).split(",");
 
-        return worldData;
+        return allData.get(allData.size() - 1).split(",");
     }
 
     /**
@@ -73,9 +73,17 @@ public class GraphData {
 
         String url = "https://covid.ourworldindata.org/data/ecdc/new_deaths.csv";
 
-        if (type.equals("Total confirmed cases")) url = "https://covid.ourworldindata.org/data/ecdc/total_cases.csv";
-        else if (type.equals("Total deaths")) url = "https://covid.ourworldindata.org/data/ecdc/total_deaths.csv";
-        else if (type.equals("New confirmed cases")) url = "https://covid.ourworldindata.org/data/ecdc/new_cases.csv";
+        switch (type) {
+            case "Total confirmed cases":
+                url = "https://covid.ourworldindata.org/data/ecdc/total_cases.csv";
+                break;
+            case "Total deaths":
+                url = "https://covid.ourworldindata.org/data/ecdc/total_deaths.csv";
+                break;
+            case "New confirmed cases":
+                url = "https://covid.ourworldindata.org/data/ecdc/new_cases.csv";
+                break;
+        }
 
         String[] c = new String[0];
         ArrayList<String> data = new ArrayList<>();
@@ -132,7 +140,7 @@ public class GraphData {
         String inputLine;
 
         if ((inputLine = in.readLine()) != null) {
-            String ss = inputLine.substring(5, inputLine.length());
+            String ss = inputLine.substring(5);
             data = ss.split(",");
         }
         return data;

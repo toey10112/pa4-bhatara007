@@ -1,4 +1,3 @@
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -6,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
@@ -21,11 +19,7 @@ import java.util.ResourceBundle;
  *
  * @author Bhatara Chaemchan SKE17
  */
-public class WorldController implements Initializable {
-
-    //initialize FXML attributes.
-    @FXML
-    private Button mainMenu;
+public class WorldController implements Initializable  {
 
     @FXML
     private Label lb1;
@@ -110,15 +104,16 @@ public class WorldController implements Initializable {
         }
     }
 
-    /**
+    /** I remove it because it not use
      * Method for convert String to Integer.
      * @param s String for convert.
      * @return val the Integer value of String.
      */
-    public int convertInt(String s) {
-        int val = Integer.parseInt(s);
-        return val;
-    }
+
+//    public int convertInt(String s) {
+//        int val = Integer.parseInt(s);
+//        return val;
+//    }
 
     /**
      * Method for convert String to Integer.
@@ -126,8 +121,7 @@ public class WorldController implements Initializable {
      * @return val the double value of String.
      */
     public double convertDouble(String s) {
-        double val = Double.parseDouble(s);
-        return val;
+        return Double.parseDouble(s);
     }
 
     /**
@@ -136,13 +130,14 @@ public class WorldController implements Initializable {
      */
     public void cb1Handler() throws Exception {
         try {
-            GraphData gd = new GraphData();
+//            GraphData gd = new GraphData();
             worldDataToday = gd.getWorldData(cb1.getValue(), today);
             getWorldDataYesterday = gd.getWorldData(cb1.getValue(), yesterday);
-            newCase = String.format("%,d", convertInt(worldDataToday[2]));
-            newDeaths = String.format("%,d", convertInt(worldDataToday[3]));
-            totalCases = String.format("%,d", convertInt(worldDataToday[4]));
-            totalDeaths = String.format("%,d", convertInt(worldDataToday[5]));
+            setString();
+//            newCase = String.format("%,d", convertInt(worldDataToday[2]));
+//            newDeaths = String.format("%,d", convertInt(worldDataToday[3]));
+//            totalCases = String.format("%,d", convertInt(worldDataToday[4]));
+//            totalDeaths = String.format("%,d", convertInt(worldDataToday[5]));
 
             setAll();
             text.setText(cb1.getValue());
@@ -183,10 +178,11 @@ public class WorldController implements Initializable {
         t4.setStyle("-fx-fill: forestgreen");
 
         // formatted String of the values for display.
-        newCase = String.format("%,d", Integer.parseInt(worldDataToday[2]));
-        newDeaths = String.format("%,d", Integer.parseInt(worldDataToday[3]));
-        totalCases = String.format("%,d", Integer.parseInt(worldDataToday[4]));
-        totalDeaths = String.format("%,d", Integer.parseInt(worldDataToday[5]));
+        setString();
+//        newCase = String.format("%,d", Integer.parseInt(worldDataToday[2]));
+//        newDeaths = String.format("%,d", Integer.parseInt(worldDataToday[3]));
+//        totalCases = String.format("%,d", Integer.parseInt(worldDataToday[4]));
+//        totalDeaths = String.format("%,d", Integer.parseInt(worldDataToday[5]));
 
         // set a value of divide attributes.
         divide1 = convertDouble(getWorldDataYesterday[indexOfTotalCaseIndex]);
@@ -215,6 +211,7 @@ public class WorldController implements Initializable {
         if (percent1 > 0) {
             diff1 = String.format("( +%.2f", percent1);
             t1.setStyle("-fx-fill: red");
+
         }
         if (percent2 > 0) {
             diff2 = String.format("( +%.2f", percent2);
@@ -257,4 +254,15 @@ public class WorldController implements Initializable {
         t3.setText("");
         t4.setText("");
     }
+
+    public void setString(){
+        // formatted String of the values for display.
+        newCase = String.format("%,d", Integer.parseInt(worldDataToday[2]));
+        newDeaths = String.format("%,d", Integer.parseInt(worldDataToday[3]));
+        totalCases = String.format("%,d", Integer.parseInt(worldDataToday[4]));
+        totalDeaths = String.format("%,d", Integer.parseInt(worldDataToday[5]));
+
+    }
+
+
 }
